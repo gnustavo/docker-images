@@ -1,9 +1,8 @@
-# Git::Hooks test image #
+# Image centos6-perl #
 
-This image is intended to be used as a testing bed for
-[Git::Hooks](https://metacpan.org/pod/Git::Hooks). It contains the oldest
-versions of Perl and Git supported by Git::Hooks. I use it to make sure I'm not
-using Perl or Git features which were implemented in newer versions.
+This image is intended to be used as a testing bed for my Perl modules. In
+particular, [Git::Hooks](https://metacpan.org/pod/Git::Hooks). It's based on
+CentOS 6, which is the oldest distro still in maintenance mode.
 
 ## Build / Shell / Push ##
 
@@ -23,7 +22,7 @@ the next version and test it with docker, like this:
 cd /path/to/git-hooks
 dzil build
 TAR=$(ls Git-Hooks-*.tar.gz | tail -1)
-docker run --rm -i -t -v $PWD:/code gnustavo/git-hooks-test /bin/bash --login -c "cpanm -v /code/$TAR"
+docker run --rm -i -t -v $PWD:/code gnustavo/centos6-perl /bin/bash --login -c "cpanm -v /code/$TAR"
 ```
 
 I decide which versions of Perl and Git to support based on the native package
