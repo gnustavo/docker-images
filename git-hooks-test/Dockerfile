@@ -26,7 +26,7 @@ RUN  curl -SL https://github.com/tokuhirom/plenv/archive/master.tar.gz -o plenv.
   && cpanm --installdeps --notest Git::Hooks \
   && rm -rf .cpanm .plenv/build/* .plenv/cache/*
 
-ARG GIT_VERSION=1.7.2.3
+ARG GIT_VERSION=1.7.1
 
 RUN  curl -SL https://github.com/git/git/archive/v${GIT_VERSION}.tar.gz -o git.tar.gz \
   && mkdir $HOME/git \
