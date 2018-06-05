@@ -21,6 +21,6 @@ RUN  curl -L https://cpanmin.us | perl - App::cpanminus \
 
 WORKDIR /docker
 
-ENTRYPOINT ["prove", "-l", "-j", "4"]
+ENTRYPOINT ["prove"]
 
-CMD ["t"]
+CMD ["-l", "-j", "2", "t"]
