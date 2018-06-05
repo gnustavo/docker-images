@@ -11,7 +11,7 @@ build:
 	docker build -t $(IMAGE_NAME) -f Dockerfile .
 
 shell:
-	docker run --rm -i -t $(IMAGE_NAME) /bin/bash
+	docker run --rm -i -t --entrypoint /bin/bash $(IMAGE_NAME)
 
 push: $(HOME)/.docker/config.json
 	docker push $(IMAGE_NAME)
