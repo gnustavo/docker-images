@@ -1,6 +1,6 @@
-FROM centos:6
+FROM centos:8
 LABEL maintainer="Gustavo Chaves <gustavo@cpan.org>" \
-      description="CentOS 6 Perl test environment"
+      description="CentOS 8 Git::Hooks test environment"
 
 # Install basic packages, generate pt_BR locales and configure timezone.
 
@@ -10,12 +10,17 @@ RUN yum install -y \
     curl \
     gcc \
     git \
+    glibc-langpack-pt \
+    glibc-locale-source \
     openssl \
     openssl-devel \
     perl \
+    perl-App-cpanminus \
+    perl-Encode \
     perl-ExtUtils-MakeMaker \
+    perl-HTTP-Message \
     perl-JSON \
-    perl-List-MoreUtils \
+    perl-MIME-Base64 \
     perl-Text-Glob \
     perl-URI \
     unzip \
@@ -27,8 +32,7 @@ RUN localedef -c -i pt_BR -f ISO-8859-1 pt_BR.ISO-8859-1 \
 
 # Install non-packaged Git::Hooks Perl dependencies
 
-RUN curl -L https://cpanmin.us | perl - -n App::cpanminus \
- && cpanm --installdeps --notest Git::Hooks \
+RUN cpanm --installdeps --notest Git::Hooks \
  && cpanm --installdeps --notest JIRA::REST \
  && rm -rf $HOME/.cpanm
 

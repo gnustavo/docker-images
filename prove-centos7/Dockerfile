@@ -6,20 +6,33 @@ LABEL maintainer="Gustavo Chaves <gustavo@cpan.org>" \
 
 ENV TZ=America/Sao_Paulo
 
-RUN  yum install -y unzip curl gcc git make openssl openssl-devel perl perl-Encode \
-       perl-ExtUtils-MakeMaker perl-Data-Dumper perl-List-MoreUtils perl-Text-Glob \
-  && yum clean all && rm -rf /var/cache/yum \
-  && localedef -c -i pt_BR -f ISO-8859-1 pt_BR.ISO-8859-1 \
-  && localedef -c -i pt_BR -f UTF-8 pt_BR.UTF-8 \
-  && rm -rf $HOME/install.log* $HOME/anaconda-ks.cfg
+RUN yum install -y \
+    curl \
+    gcc \
+    git \
+    openssl \
+    openssl-devel \
+    perl \
+    perl-App-cpanminus \
+    perl-Encode \
+    perl-ExtUtils-MakeMaker \
+    perl-HTTP-Message \
+    perl-JSON \
+    perl-List-MoreUtils \
+    perl-Text-Glob \
+    perl-URI \
+    unzip \
+ && yum clean all \
+ && rm -rf $HOME/install.log* $HOME/anaconda-ks.cfg
+
+RUN localedef -c -i pt_BR -f ISO-8859-1 pt_BR.ISO-8859-1 \
+ && localedef -c -i pt_BR -f UTF-8 pt_BR.UTF-8
 
 # Install non-packaged Git::Hooks Perl dependencies
 
-RUN  curl -L https://cpanmin.us | perl - App::cpanminus \
-  && cpanm --installdeps --notest Git::Hooks \
-  && cpanm --installdeps --notest JIRA::REST \
-  && cpanm --notest IO::Interactive \
-  && rm -rf $HOME/.cpanm
+RUN cpanm --installdeps --notest Git::Hooks \
+ && cpanm --installdeps --notest JIRA::REST \
+ && rm -rf $HOME/.cpanm
 
 WORKDIR /docker
 
