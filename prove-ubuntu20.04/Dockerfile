@@ -1,6 +1,6 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 LABEL maintainer="Gustavo Chaves <gustavo@cpan.org>" \
-      description="Ubuntu 18.04 Perl test environment"
+      description="Ubuntu 20.04 Perl test environment"
 
 # Install basic packages, generate pt_BR locales and configure timezone.
 

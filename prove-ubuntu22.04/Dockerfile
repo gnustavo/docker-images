@@ -1,6 +1,6 @@
-FROM ubuntu:16.04
+FROM ubuntu:22.04
 LABEL maintainer="Gustavo Chaves <gustavo@cpan.org>" \
-      description="Ubuntu 16.04 Perl test environment"
+      description="Ubuntu 22.04 Perl test environment"
 
 # Install basic packages, generate pt_BR locales and configure timezone.
 
@@ -22,6 +22,7 @@ RUN apt-get update \
     libjson-perl \
     liblist-moreutils-perl \
     liblog-any-perl \
+    libnet-ssleay-perl \
     libpath-tiny-perl \
     libssl-dev \
     libtext-glob-perl \
